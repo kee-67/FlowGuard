@@ -25,7 +25,6 @@ DATA_DIR = ROOT / "data"
 SAMPLES_DIR = ROOT / "sample_drains"
 HAZARD_LOG_PATH = DATA_DIR / "hazard_log.json"
 MANIFEST_PATH = DATA_DIR / "samples_manifest.json"
-METRICS_PATH = DATA_DIR / "validation_metrics.json"
 
 
 @st.cache_resource
@@ -62,21 +61,11 @@ def main() -> None:
 
     engine = get_flowguard_engine()
     samples = load_json(MANIFEST_PATH, [])
-    metrics = load_json(METRICS_PATH, {})
+    apply_shadow_fix = True
 
     with st.sidebar:
         st.header("Inspection Controls")
         zone = st.selectbox("Penang Flood Corridor Zone", list(ZONE_METADATA.keys()))
-        apply_shadow_fix = st.toggle(
-            "Week 10 Shadow Fix (LAB CLAHE + Augmented Head)",
-            value=True,
-            help="Toggle off to demonstrate the Pre-Week-10 bug where harsh afternoon shadows triggered false alarms.",
-        )
-        st.divider()
-        if metrics:
-            st.metric("Validation Accuracy (Week 10)", f"{metrics.get('week10_validation_accuracy', 0)}%")
-            st.metric("Average Inference Latency", f"{metrics.get('avg_latency_ms', 0)} ms")
-            st.caption(f"Engine: {engine.backend_mode}")
 
     col_left, col_right = st.columns([5, 7], gap="large")
 
@@ -94,7 +83,7 @@ def main() -> None:
         )
 
         notes = st.text_input("Field observation note (optional)", placeholder="Near corner culvert by hawker stalls")
-        run_btn = st.button("Analyze Blockage Severity", type="primary", use_container_width=True)
+        run_btn = st.button("Analyze Blockage Severity", type="primary", width="stretch")
 
     source_bytes: Any = None
     source_name = ""
@@ -129,8 +118,8 @@ def main() -> None:
                 m3.metric("Inference Latency", f"{lat} ms")
 
                 img_a, img_b = st.columns(2)
-                img_a.image(result["preprocessed_b64"], caption="224x224 Preprocessed Input", use_container_width=True)
-                img_b.image(result["heatmap_b64"], caption="CNN Debris Activation Heatmap", use_container_width=True)
+                img_a.image(result["preprocessed_b64"], caption="224x224 Preprocessed Input", width="stretch")
+                img_b.image(result["heatmap_b64"], caption="CNN Debris Activation Heatmap", width="stretch")
 
                 st.write("Class Probabilities:")
                 for cls_name, pct in result["probabilities"].items():
@@ -138,7 +127,7 @@ def main() -> None:
 
                 st.info(result["recommended_action"])
 
-                if st.button("03. Dispatch to MBPP Live Hazard Log", use_container_width=True):
+                if st.button("03. Dispatch to MBPP Live Hazard Log", width="stretch"):
                     existing = load_json(HAZARD_LOG_PATH, [])
                     new_id = f"FG-2026-{101 + len(existing)}"
                     append_hazard_record(
@@ -160,7 +149,7 @@ def main() -> None:
     st.subheader("03. Live Municipal Priority Dispatch Log")
     hazards = load_json(HAZARD_LOG_PATH, [])
     if hazards:
-        st.dataframe(hazards, use_container_width=True)
+        st.dataframe(hazards, width="stretch")
     else:
         st.info("No hazard records logged yet. Run an inspection and click Dispatch.")
 
