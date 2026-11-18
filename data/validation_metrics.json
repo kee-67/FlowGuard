@@ -1,0 +1,119 @@
+{
+  "dataset_size_train": 180,
+  "dataset_size_val": 120,
+  "classes": [
+    "Clear",
+    "Moderate",
+    "Critical"
+  ],
+  "pre_week10_accuracy": 76.7,
+  "week10_validation_accuracy": 99.2,
+  "pre_week10_confusion_matrix": [
+    [
+      22,
+      14,
+      4
+    ],
+    [
+      0,
+      33,
+      7
+    ],
+    [
+      0,
+      3,
+      37
+    ]
+  ],
+  "week10_confusion_matrix": [
+    [
+      40,
+      0,
+      0
+    ],
+    [
+      0,
+      40,
+      0
+    ],
+    [
+      0,
+      1,
+      39
+    ]
+  ],
+  "per_class_metrics": {
+    "Clear": {
+      "precision": 100.0,
+      "recall": 100.0,
+      "f1": 100.0
+    },
+    "Moderate": {
+      "precision": 97.6,
+      "recall": 100.0,
+      "f1": 98.8
+    },
+    "Critical": {
+      "precision": 100.0,
+      "recall": 97.5,
+      "f1": 98.7
+    }
+  },
+  "clear_shadow_subset_count": 14,
+  "pre_week10_shadow_false_alarms": 14,
+  "week10_shadow_false_alarms": 0,
+  "avg_latency_ms": 20.3,
+  "min_latency_ms": 14.7,
+  "max_latency_ms": 22.5,
+  "sample_checks": [
+    {
+      "filename": "01_clear_gurney_drive.jpg",
+      "expected": "Clear",
+      "predicted": "Clear",
+      "confidence": 99.7,
+      "latency_ms": 20.92
+    },
+    {
+      "filename": "02_clear_harsh_shadow_pramlee.jpg",
+      "expected": "Clear",
+      "predicted": "Clear",
+      "confidence": 100.0,
+      "latency_ms": 14.67
+    },
+    {
+      "filename": "03_moderate_leaves_pulau_tikus.jpg",
+      "expected": "Moderate",
+      "predicted": "Moderate",
+      "confidence": 96.3,
+      "latency_ms": 20.89
+    },
+    {
+      "filename": "04_moderate_silt_air_itam.jpg",
+      "expected": "Moderate",
+      "predicted": "Moderate",
+      "confidence": 73.2,
+      "latency_ms": 22.04
+    },
+    {
+      "filename": "05_critical_plastic_jalan_pramlee.jpg",
+      "expected": "Critical",
+      "predicted": "Critical",
+      "confidence": 99.3,
+      "latency_ms": 22.54
+    },
+    {
+      "filename": "06_critical_flood_jelutong.jpg",
+      "expected": "Critical",
+      "predicted": "Critical",
+      "confidence": 98.7,
+      "latency_ms": 20.73
+    }
+  ],
+  "shadow_bug_repro": {
+    "sample": "02_clear_harsh_shadow_pramlee.jpg",
+    "before_fix_label": "Moderate",
+    "before_fix_confidence": 86.7,
+    "after_fix_label": "Clear",
+    "after_fix_confidence": 100.0
+  }
+}
