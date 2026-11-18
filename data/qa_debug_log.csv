@@ -1,0 +1,7 @@
+bug_id,phase,module,severity,symptom,resolution,status
+BUG-01,Week 10 Alpha,Preprocessing,High,Harsh afternoon shadows on clean drains triggered false Moderate/Critical alerts,Added LAB L-channel CLAHE normalization + brightness/contrast augmentation retraining,Fixed & Verified
+BUG-02,Week 10 Alpha,Inference Pipeline,High,Non-square phone photos distorted metal grate spacing during naive 224x224 resize,Implemented aspect-preserving center square crop prior to bicubic/area resize,Fixed & Verified
+BUG-03,Week 10 Alpha,Privacy & Ethics,Critical,Street photos risked capturing passerby faces near roadside longkang,Integrated OpenCV Haar Cascade face redaction blur prior to tensor storage,Fixed & Verified
+BUG-04,Week 10 Alpha,Frontend Performance,Medium,Reloading model weights per upload spiked first-run latency above 1.4 seconds,Wrapped engine initialization in @st.cache_resource and singleton server state,Fixed & Verified
+BUG-05,Week 11 Beta,Input Validation,Medium,Corrupt 0-byte or unsupported file uploads threw unhandled OpenCV exceptions,Added validate_and_load_image() guard returning structured user recovery messages,Fixed & Verified
+BUG-06,Week 11 Beta,UI Accessibility,Medium,Dark status chips lacked clear label pairing and keyboard Escape handling,Added WCAG AA contrast-checked badges and full Tab/Enter/Escape modal bindings,Fixed & Verified

@@ -1,0 +1,81 @@
+Slide 1: Cover Slide
+Layout: Bold centered title with a subtle dark overlay background photo of a Penang street/waterway.
+
+Copy-Paste Text:
+
+Title: FlowGuard Penang
+
+Subtitle: Proactive Storm Drain Blockage Detection Before the Rain Falls
+
+Footer: Team [Insert Team Name] | Han Chiang High School Makers Club | Nov 2026
+
+Team Roster Box: [Name 1 - Expert], [Name 2 - Expert], [Name 3 - Intermediate], [Name 4 - Intermediate], [Name 5 - Beginner], [Name 6 - Beginner]
+
+Slide 2: The Problem
+Layout: Two-column split. Left side: 2 stacked photos (Top: Trash-clogged Penang longkang; Bottom: Flash flood in Jalan P. Ramlee / Bayan Lepas). Right side: 3 short bullet points.
+
+Copy-Paste Text:
+
+Heading: Why Penang Floods Escalate Fast
+
+Bullet 1: Blocked Infrastructure: Plastic waste and leaves choke roadside storm drains, cutting water capacity before heavy downpours hit.
+
+Bullet 2: Reactive Response: Municipal teams rely on manual patrols or resident complaints after roads are already underwater.
+
+Bullet 3: Who Suffers: Daily commuters, shop owners, and emergency responders in flood-prone zones like Jalan P. Ramlee and Jelutong.
+
+Slide 3: Our Solution & User Flow
+Layout: 3 horizontal cards with numbered badges (01, 02, 03) and simple icons (Camera, Brain/Chip, Map Pin).
+
+Copy-Paste Text:
+
+Heading: How FlowGuard Works in 3 Steps
+
+Card 1 – Snap & Upload: Residents take a quick photo of a clogged drain and select their Penang zone.
+
+Card 2 – AI Classification: Our TensorFlow engine grades blockage severity (Clear, Moderate, or Critical) in milliseconds.
+
+Card 3 – Priority Dispatch: Critical hazards pin directly onto a live municipal dashboard for rapid pre-storm clearing.
+
+Slide 4: Technical Architecture (Anti-"Black Box" Slide)
+Layout: Left-to-right block diagram using Canva arrows: [Streamlit UI] ➔ [Image Preprocessing (224x224)] ➔ [MobileNetV2 CNN] ➔ [Live Hazard Log].
+
+Copy-Paste Text:
+
+Heading: Under the Hood: System Architecture
+
+Frontend & Bridge: Python Streamlit web interface cached with @st.cache_resource for zero-lag live inference.
+
+AI Model: TensorFlow MobileNetV2 (Transfer Learning) chosen for fast edge-ready performance on standard hardware.
+
+Why AI is Essential: Basic color filters mistake dark shadows or wet asphalt for trash; our CNN learns actual debris textures and shapes.
+
+Slide 5: Testing, Validation & Ethics
+Layout: Left side: Screenshot of your Week 10 QA Debug Log or accuracy graph. Right side: 3 concise callout boxes.
+
+Copy-Paste Text:
+
+Heading: Week 10 QA Testing & Responsible AI
+
+Performance: [Insert %]% validation accuracy with [Insert ms] ms average inference latency.
+
+Key Bug Solved: Harsh afternoon shadows initially triggered false alarms; fixed by adding brightness/contrast augmentation and re-training.
+
+Privacy & Ethics: Zero faces or private properties captured—strictly public roadside drains with transparent confidence scores.
+
+Slide 6: Business Value & 2027 Roadmap
+Layout: Top banner for Business Model + 3-step timeline at the bottom (Phase 1 ➔ Phase 2 ➔ Phase 3).
+
+Copy-Paste Text:
+
+Heading: Commercial Viability & Next Steps
+
+Business Model: B2G (Business-to-Government) SaaS dashboard licensing for local councils (MBPP) and private township developers to cut flood cleanup costs.
+
+Phase 1 (Current): Web prototype + Penang corridor hazard logging.
+
+Phase 2 (Q1 2027): Auto-GPS tagging and offline mobile PWA support.
+
+Phase 3 (Mid 2027): Live rainfall API integration to auto-prioritize high-risk zones before storms arrive.
+
+Bottom Tagline: Transitioning to Live Software Demo...

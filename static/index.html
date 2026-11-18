@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowGuard Penang | Storm Drain Blockage Inspection Console</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main workspace</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-lockup">
+        <div class="brand-mark" aria-hidden="true">
+          <!-- Custom drain-grate channel mark representing municipal storm drain engineering -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square">
+            <rect x="3" y="4" width="18" height="16" rx="1"></rect>
+            <line x1="8" y1="4" x2="8" y2="20"></line>
+            <line x1="12" y1="4" x2="12" y2="20"></line>
+            <line x1="16" y1="4" x2="16" y2="20"></line>
+            <path d="M4 15c3 0 3-2 6-2s3 2 6 2 3-2 4-2"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>FlowGuard Penang</h1>
+          <p>Proactive Storm Drain Blockage Detection Before the Rain Falls</p>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        id="mobile-menu-btn"
+        class="mobile-menu-btn"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        aria-label="Toggle navigation menu"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        Menu
+      </button>
+
+      <nav id="primary-nav" class="header-nav" aria-label="Workspace sections" role="tablist">
+        <button type="button" class="nav-tab" role="tab" aria-selected="true" data-view="inspect">Inspect Studio</button>
+        <button type="button" class="nav-tab" role="tab" aria-selected="false" data-view="dispatch">Dispatch Map</button>
+        <button type="button" class="nav-tab" role="tab" aria-selected="false" data-view="architecture">Anti-Black-Box</button>
+        <button type="button" class="nav-tab" role="tab" aria-selected="false" data-view="qa">Week 10 QA</button>
+        <button type="button" class="nav-tab" role="tab" aria-selected="false" data-view="pitch">Pitch Stage</button>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch to dark theme">
+          <span id="theme-label">Dark Mode</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="telemetry-strip">
+      <div class="telemetry-strip-inner">
+        <div>
+          <span class="grate-divider" aria-hidden="true"></span>
+          <span>Han Chiang High School Makers Club | 2026 AI Vanguard Challenge</span>
+        </div>
+        <div class="strip-meta">
+          <span>Engine: <strong id="strip-engine" class="mono">Loading...</strong></span>
+          <span>Val Accuracy: <strong id="strip-acc" class="mono">...</strong></span>
+          <span>Avg Latency: <strong id="strip-lat" class="mono">...</strong></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="main-wrap">
+    <!-- VIEW 1: LIVE INSPECTION & DISPATCH STUDIO -->
+    <section id="view-inspect" class="view-panel active" aria-labelledby="heading-inspect">
+      <div class="section-header">
+        <div>
+          <h2 id="heading-inspect">Live Drain Inspection &amp; Dispatch Studio</h2>
+          <p>Select a Penang corridor photo or upload a field snap, verify the CNN debris heatmap, and log priority dispatches.</p>
+        </div>
+      </div>
+
+      <div class="studio-grid">
+        <!-- Left Controls Column -->
+        <div class="card">
+          <h3 class="card-title"><span class="step-index">01</span>Snap, Zone &amp; Calibration</h3>
+
+          <div class="control-group">
+            <label for="zone-select" class="control-label">Penang Flood Corridor Zone</label>
+            <select id="zone-select" class="input-control"></select>
+            <p id="zone-detail" class="help-text">Select a Penang monitoring zone.</p>
+          </div>
+
+          <div class="control-group">
+            <span class="control-label">Select Penang Field Sample (6 Test Cases)</span>
+            <div id="sample-grid" class="sample-grid" role="group" aria-label="Penang drain test samples"></div>
+
+            <div id="upload-dropzone" class="upload-box">
+              <label for="photo-upload" class="file-input-label">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                Upload Custom Drain Photo
+              </label>
+              <input type="file" id="photo-upload" class="sr-only" accept="image/*" />
+              <p id="upload-filename" class="help-text">Or drag and drop JPG, PNG, or WEBP here (max 15 MB).</p>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="switch-row">
+              <div>
+                <strong style="font-size: 0.9rem;">Week 10 Shadow-Invariance Fix</strong>
+                <p class="help-text">LAB CLAHE normalization + augmented weights. Turn OFF on Sample 02 to reproduce the Week 10 false-alarm bug.</p>
+              </div>
+              <button
+                type="button"
+                id="shadow-fix-switch"
+                class="switch-btn"
+                role="switch"
+                aria-checked="true"
+                aria-label="Toggle Week 10 Shadow-Invariance Fix"
+              >
+                ON
+              </button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label for="field-notes" class="control-label">Field Observation Note (Optional)</label>
+            <input
+              type="text"
+              id="field-notes"
+              class="input-control"
+              placeholder="Optional note, e.g. clogged culvert near hawker stall"
+            />
+          </div>
+
+          <button type="button" id="analyze-btn" class="btn-primary">
+            Run Blockage Inspection
+          </button>
+        </div>
+
+        <!-- Right Result & Visual Proof Column -->
+        <div class="card">
+          <h3 class="card-title"><span class="step-index">02</span>CNN Classification &amp; Visual Proof</h3>
+
+          <div id="inspect-empty" class="state-panel">
+            <h3>No Inspection Active</h3>
+            <p>Choose one of the 6 Penang field samples or upload a drain photo on the left, then click Run Blockage Inspection.</p>
+          </div>
+
+          <div id="inspect-loading" class="state-panel" hidden aria-live="polite">
+            <h3>Running 224x224 Preprocessing &amp; CNN Inference</h3>
+            <p>Applying privacy face-blur shield, LAB shadow normalization, and convolutional texture scoring...</p>
+          </div>
+
+          <div id="inspect-error" class="state-panel error-panel" hidden role="alert">
+            <h3>Inspection Could Not Complete</h3>
+            <p id="inspect-error-msg">Check the uploaded image format and try again.</p>
+          </div>
+
+          <div id="inspect-result" hidden>
+            <div class="verdict-banner">
+              <div>
+                <div style="font-size: 0.78rem; color: var(--ink-muted); font-weight: 700; margin-bottom: 4px;">
+                  BLOCKAGE SEVERITY VERDICT
+                </div>
+                <span id="verdict-badge" class="severity-badge severity-Clear">Clear</span>
+              </div>
+              <div class="verdict-metrics">
+                <div class="metric-pair">
+                  <span>Confidence</span>
+                  <strong id="verdict-conf">--</strong>
+                </div>
+                <div class="metric-pair">
+                  <span>Latency</span>
+                  <strong id="verdict-lat">--</strong>
+                </div>
+                <div class="metric-pair">
+                  <span>Privacy Shield</span>
+                  <strong id="verdict-privacy">--</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="visual-proof-grid">
+              <div class="proof-frame">
+                <img id="img-preprocessed" alt="224 by 224 preprocessed drain input tensor view" src="" />
+                <div class="proof-caption">
+                  <span>224x224 Preprocessed Input</span>
+                  <span id="shadow-mode-tag" class="mono">CLAHE ON</span>
+                </div>
+              </div>
+              <div class="proof-frame">
+                <img id="img-heatmap" alt="CNN debris activation heatmap highlighting detected trash and leaf textures" src="" />
+                <div class="proof-caption">
+                  <span>CNN Debris Activation Heatmap</span>
+                  <span class="mono">56x56 Spatial Map</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="prob-list" aria-label="Class probabilities">
+              <div class="prob-row">
+                <strong>Clear</strong>
+                <div class="prob-track"><div id="prob-bar-Clear" class="prob-fill prob-fill-Clear" style="width: 0%;"></div></div>
+                <span id="prob-val-Clear" class="mono">0%</span>
+              </div>
+              <div class="prob-row">
+                <strong>Moderate</strong>
+                <div class="prob-track"><div id="prob-bar-Moderate" class="prob-fill prob-fill-Moderate" style="width: 0%;"></div></div>
+                <span id="prob-val-Moderate" class="mono">0%</span>
+              </div>
+              <div class="prob-row">
+                <strong>Critical</strong>
+                <div class="prob-track"><div id="prob-bar-Critical" class="prob-fill prob-fill-Critical" style="width: 0%;"></div></div>
+                <span id="prob-val-Critical" class="mono">0%</span>
+              </div>
+            </div>
+
+            <div class="telemetry-4up">
+              <div class="telemetry-tile">
+                <span class="t-label">Debris Texture</span>
+                <span id="tel-texture" class="t-val">--</span>
+              </div>
+              <div class="telemetry-tile">
+                <span class="t-label">Grate Visibility</span>
+                <span id="tel-grate" class="t-val">--</span>
+              </div>
+              <div class="telemetry-tile">
+                <span class="t-label">Shadow Index</span>
+                <span id="tel-shadow" class="t-val">--</span>
+              </div>
+              <div class="telemetry-tile">
+                <span class="t-label">Trash Chromaticity</span>
+                <span id="tel-chroma" class="t-val">--</span>
+              </div>
+            </div>
+
+            <div class="dispatch-bar">
+              <p id="recommended-action" class="action-note">--</p>
+              <button type="button" id="dispatch-btn" class="btn-brand">
+                03. Dispatch to MBPP Hazard Log
+              </button>
+            </div>
+            <p id="dispatch-feedback" class="help-text" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: MBPP MUNICIPAL PRIORITY DISPATCH MAP & LOG -->
+    <section id="view-dispatch" class="view-panel" aria-labelledby="heading-dispatch">
+      <div class="section-header">
+        <div>
+          <h2 id="heading-dispatch">MBPP Municipal Priority Dispatch Map &amp; Log</h2>
+          <p>Click any Penang corridor pin to filter active drain hazards, update crew dispatch status, or export CSV records.</p>
+        </div>
+        <button type="button" id="export-csv-btn" class="btn-secondary">Export Hazard Log (CSV)</button>
+      </div>
+
+      <div class="dispatch-layout">
+        <div class="card">
+          <h3 class="card-title">Penang Island Flood Corridor Map</h3>
+          <div class="penang-map-box">
+            <svg id="penang-map-svg" class="penang-map-svg" viewBox="0 0 420 460" role="img" aria-label="Schematic map of Penang Island storm drain monitoring corridors">
+              <!-- Sea / Penang Strait background -->
+              <rect x="0" y="0" width="420" height="460" fill="var(--brand-soft)" opacity="0.55"></rect>
+              <!-- Schematic Penang Island land contour -->
+              <path
+                d="M140,42 L245,52 L315,108 L328,175 L292,226 L282,295 L258,382 L198,415 L125,392 L82,315 L72,218 L92,125 Z"
+                fill="var(--surface)"
+                stroke="var(--border-control)"
+                stroke-width="2.5"
+              ></path>
+              <!-- Penang Bridge & Second Bridge schematic reference lines -->
+              <line x1="286" y1="242" x2="395" y2="255" stroke="var(--border-control)" stroke-width="2" stroke-dasharray="5 4"></line>
+              <line x1="238" y1="392" x2="395" y2="412" stroke="var(--border-control)" stroke-width="2" stroke-dasharray="5 4"></line>
+              <text x="312" y="236" font-size="10" fill="var(--ink-muted)" font-family="var(--font-mono)">Penang Bridge</text>
+              <text x="128" y="218" font-size="11" fill="var(--ink-muted)" font-family="var(--font-sans)" font-weight="700">PENANG ISLAND</text>
+              <g id="map-pins-layer"></g>
+            </svg>
+          </div>
+          <p class="help-text" style="margin-top: 10px;">
+            Pin codes pair color and letter labels: C = Critical, M = Moderate, OK = Clear. Click a pin to filter the table.
+          </p>
+          <button type="button" id="clear-map-filter" class="btn-secondary" style="margin-top: 10px; width: 100%;">
+            Show All Penang Corridors
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="table-toolbar">
+            <h3 class="card-title" style="margin: 0;">Live Hazard Dispatch Queue</h3>
+            <div class="filter-pair">
+              <label for="filter-zone" class="sr-only">Filter by Penang zone</label>
+              <select id="filter-zone">
+                <option value="ALL">All Corridors</option>
+              </select>
+              <label for="filter-status" class="sr-only">Filter by dispatch status</label>
+              <select id="filter-status">
+                <option value="ALL">All Statuses</option>
+                <option value="Pending Dispatch">Pending Dispatch</option>
+                <option value="Crew Dispatched">Crew Dispatched</option>
+                <option value="Cleared">Cleared</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="hazards-loading" class="state-panel" hidden>
+            <h3>Loading Hazard Log</h3>
+            <p>Fetching active MBPP corridor records...</p>
+          </div>
+
+          <div id="hazards-error" class="state-panel error-panel" hidden>
+            <h3>Could Not Load Hazard Log</h3>
+            <p id="hazards-error-msg">Server returned an error. Refresh or verify server.py is running.</p>
+          </div>
+
+          <div id="hazards-empty" class="state-panel" hidden>
+            <h3>No Matching Hazard Records</h3>
+            <p>No records match the current zone and status filter. Reset filters or dispatch a new inspection from Inspect Studio.</p>
+          </div>
+
+          <div id="hazards-table-wrap" class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Ticket &amp; Time</th>
+                  <th>Corridor Zone</th>
+                  <th>Severity</th>
+                  <th>Confidence / Speed</th>
+                  <th>Dispatch Status</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody id="hazards-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: ANTI-BLACK-BOX ARCHITECTURE & CODE DEFENSE -->
+    <section id="view-architecture" class="view-panel" aria-labelledby="heading-arch">
+      <div class="section-header">
+        <div>
+          <h2 id="heading-arch">Under the Hood: Anti-"Black Box" System Architecture</h2>
+          <p>Click any pipeline stage below to inspect the live Python code, Beginner/Expert explanations, and latest tensor values.</p>
+        </div>
+      </div>
+
+      <div class="pipeline-rail" role="tablist" aria-label="Pipeline architecture stages">
+        <button type="button" class="pipe-node active" data-stage="frontend">
+          <span class="pipe-num">STAGE 01</span>
+          <span class="pipe-title">Streamlit / Web UI + Cache</span>
+        </button>
+        <button type="button" class="pipe-node" data-stage="preprocess">
+          <span class="pipe-num">STAGE 02</span>
+          <span class="pipe-title">Preprocessing (224x224 + CLAHE)</span>
+        </button>
+        <button type="button" class="pipe-node" data-stage="model">
+          <span class="pipe-num">STAGE 03</span>
+          <span class="pipe-title">MobileNetV2 Texture CNN</span>
+        </button>
+        <button type="button" class="pipe-node" data-stage="privacy">
+          <span class="pipe-num">STAGE 04</span>
+          <span class="pipe-title">Privacy Shield &amp; Hazard Log</span>
+        </button>
+      </div>
+
+      <div class="defense-split">
+        <div class="card">
+          <h3 id="stage-title" class="card-title">01. Streamlit / Web UI Cache Bridge</h3>
+          <p class="help-text" style="margin-bottom: 12px;">
+            Source: <span id="stage-file" class="mono">app.py</span> (<span id="stage-symbol" class="mono">get_flowguard_engine()</span>)
+          </p>
+
+          <div style="margin-bottom: 14px;">
+            <strong style="font-size: 0.86rem; color: var(--brand);">Beginner / Intermediate Explanation (80/20 Rule)</strong>
+            <p id="stage-beginner" style="margin: 4px 0 0; font-size: 0.93rem;">Loading...</p>
+          </div>
+
+          <div style="margin-bottom: 16px;">
+            <strong style="font-size: 0.86rem; color: var(--brand);">Expert Technical Defense (Rapid Q&amp;A)</strong>
+            <p id="stage-expert" style="margin: 4px 0 0; font-size: 0.93rem;">Loading...</p>
+          </div>
+
+          <div style="padding: 12px; background: var(--surface-alt); border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+            <strong style="font-size: 0.84rem; display: block; margin-bottom: 6px;">Latest Inference Tensor Snapshot</strong>
+            <div id="live-tensor-snapshot" class="mono" style="font-size: 0.8rem; color: var(--ink-muted);">
+              Run an inspection in Inspect Studio to populate live tensor statistics here.
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Live Executed Python Implementation</h3>
+          <pre id="stage-code" class="code-block">Loading Python source from server...</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 4: WEEK 10 QA DEBUG LOG & VALIDATION TELEMETRY -->
+    <section id="view-qa" class="view-panel" aria-labelledby="heading-qa">
+      <div class="section-header">
+        <div>
+          <h2 id="heading-qa">Week 10 QA Testing &amp; Validation Metrics</h2>
+          <p>Measured accuracy across 120 held-out drain images, shadow false-alarm ablation, and live CPU latency benchmarking.</p>
+        </div>
+        <button type="button" id="run-bench-btn" class="btn-brand">Run 12-Pass Live Latency Benchmark</button>
+      </div>
+
+      <div class="qa-summary-grid">
+        <div class="card">
+          <span class="control-label">Pre-Week-10 Baseline Accuracy</span>
+          <div id="qa-pre-acc" class="qa-card-num">--</div>
+          <p id="qa-pre-shadow" class="help-text">Harsh shadow false alarms: --</p>
+        </div>
+        <div class="card" style="border-color: var(--brand); border-width: 2px;">
+          <span class="control-label">Week 10 Fixed Validation Accuracy</span>
+          <div id="qa-wk10-acc" class="qa-card-num" style="color: var(--brand);">--</div>
+          <p id="qa-wk10-shadow" class="help-text">Harsh shadow false alarms: --</p>
+        </div>
+        <div class="card">
+          <span class="control-label">Measured Average CPU Latency</span>
+          <div id="qa-avg-lat" class="qa-card-num">--</div>
+          <p id="qa-lat-range" class="help-text">Min / Max range: --</p>
+        </div>
+      </div>
+
+      <div id="bench-live-banner" class="card" hidden style="margin-bottom: 20px; border-color: var(--brand);">
+        <h3 class="card-title">Live 12-Pass Benchmark Results</h3>
+        <p id="bench-summary-text" class="mono" style="margin: 0; font-size: 0.9rem;"></p>
+      </div>
+
+      <div class="dispatch-layout" style="margin-bottom: 20px;">
+        <div class="card">
+          <h3 class="card-title">Week 10 Validation Confusion Matrix (n=120)</h3>
+          <div class="table-scroll">
+            <table class="cm-table">
+              <thead>
+                <tr>
+                  <th>True \ Pred</th>
+                  <th>Clear</th>
+                  <th>Moderate</th>
+                  <th>Critical</th>
+                </tr>
+              </thead>
+              <tbody id="cm-tbody"></tbody>
+            </table>
+          </div>
+          <p class="help-text" style="margin-top: 10px;">
+            Per-class F1 scores are computed directly from the 120-image validation split in generate_sample_dataset.py.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Week 10 &amp; Week 11 QA Debug Log</h3>
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Bug ID</th>
+                  <th>Module</th>
+                  <th>Symptom</th>
+                  <th>Resolution</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="qa-log-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 5: 6-SLIDE PITCH DECK & 8-MINUTE STAGE TIMER -->
+    <section id="view-pitch" class="view-panel" aria-labelledby="heading-pitch">
+      <div class="section-header">
+        <div>
+          <h2 id="heading-pitch">6-Slide Pitch Deck &amp; 8-Minute Viva-Voce Stage Timer</h2>
+          <p>Timed for the 3 min Pitch, 3 min Live Demo, and 2 min Rapid Q&amp;A format with 80/20 Mentor-Mentee speaker cues.</p>
+        </div>
+      </div>
+
+      <div class="stage-timer-bar">
+        <div>
+          <span class="control-label" style="margin-bottom: 2px;">VIVA-VOCE STAGE CLOCK (8:00 LIMIT)</span>
+          <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;">
+            <span id="stage-clock" class="timer-readout">08:00</span>
+            <span id="stage-phase" class="severity-badge severity-Clear">Phase 1: The Pitch (3:00)</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button type="button" id="timer-start-btn" class="btn-brand">Start Timer</button>
+          <button type="button" id="timer-pause-btn" class="btn-secondary">Pause</button>
+          <button type="button" id="timer-reset-btn" class="btn-secondary">Reset 8:00</button>
+        </div>
+      </div>
+
+      <div class="slide-deck-shell">
+        <div class="slide-top-bar">
+          <div>
+            <span id="slide-counter" class="mono" style="font-weight: 700;">Slide 1 of 6</span>
+            <span id="slide-speaker" class="speaker-pill" style="margin-left: 10px;">Speaker: Beginner + Expert</span>
+          </div>
+          <div class="slide-nav-dots" id="slide-dots" role="group" aria-label="Slide selector"></div>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" id="slide-prev-btn" class="btn-secondary">Previous</button>
+            <button type="button" id="slide-next-btn" class="btn-secondary">Next</button>
+          </div>
+        </div>
+
+        <div class="slide-stage-body">
+          <h3 id="slide-title">FlowGuard Penang</h3>
+          <p id="slide-subtitle" style="color: var(--ink-muted); font-size: 1.02rem; margin: 0 0 16px;"></p>
+          <ul id="slide-bullets" class="slide-bullets"></ul>
+          <p id="slide-layout-note" class="help-text" style="margin-top: 20px; padding-top: 12px; border-top: 1px solid var(--border-subtle);"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

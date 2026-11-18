@@ -1,0 +1,50 @@
+[
+  {
+    "id": "clear_gurney",
+    "filename": "01_clear_gurney_drive.jpg",
+    "title": "Gurney Drive Clean Monsoon Grate",
+    "zone": "Pulau Tikus / Gurney",
+    "expected": "Clear",
+    "description": "Unobstructed roadside longkang with clean cast-iron grate bars and steady shallow flow."
+  },
+  {
+    "id": "clear_shadow",
+    "filename": "02_clear_harsh_shadow_pramlee.jpg",
+    "title": "Jalan P. Ramlee Afternoon Shadow (Week 10 Bug Test)",
+    "zone": "Jalan P. Ramlee",
+    "expected": "Clear",
+    "description": "Clean drain crossed by a harsh afternoon shadow. Triggers a false alarm when Week 10 shadow normalization is disabled."
+  },
+  {
+    "id": "moderate_leaves",
+    "filename": "03_moderate_leaves_pulau_tikus.jpg",
+    "title": "Pulau Tikus Leaf & Twig Accumulation",
+    "zone": "Pulau Tikus / Gurney",
+    "expected": "Moderate",
+    "description": "Fallen tropical leaves and twigs reducing grate throat capacity by roughly 40%."
+  },
+  {
+    "id": "moderate_silt",
+    "filename": "04_moderate_silt_air_itam.jpg",
+    "title": "Air Itam Market Silt & Packaging",
+    "zone": "Air Itam",
+    "expected": "Moderate",
+    "description": "Wet market sediment, leaves, and stray wrappers partially choking the curb culvert."
+  },
+  {
+    "id": "critical_plastic",
+    "filename": "05_critical_plastic_jalan_pramlee.jpg",
+    "title": "Jalan P. Ramlee Plastic & Styrofoam Choke",
+    "zone": "Jalan P. Ramlee",
+    "expected": "Critical",
+    "description": "Severe plastic bag, bottle, and styrofoam tapau blockage completely sealing the drain throat."
+  },
+  {
+    "id": "critical_flood",
+    "filename": "06_critical_flood_jelutong.jpg",
+    "title": "Jelutong Overflowing Storm Culvert",
+    "zone": "Jelutong",
+    "expected": "Critical",
+    "description": "Turbid storm runoff backing up behind dense plastic and organic debris."
+  }
+]

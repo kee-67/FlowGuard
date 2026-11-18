@@ -1,0 +1,57 @@
+[
+  {
+    "id": "FG-2026-101",
+    "timestamp": "2026-11-18 08:15 MYT",
+    "zone": "Jalan P. Ramlee",
+    "severity": "Critical",
+    "confidence": 96.4,
+    "latency_ms": 20.3,
+    "status": "Pending Dispatch",
+    "source_photo": "05_critical_plastic_jalan_pramlee.jpg",
+    "notes": "Plastic tapau bags and styrofoam choking culvert grate ahead of afternoon rain."
+  },
+  {
+    "id": "FG-2026-102",
+    "timestamp": "2026-11-18 08:42 MYT",
+    "zone": "Jelutong",
+    "severity": "Critical",
+    "confidence": 94.8,
+    "latency_ms": 20.3,
+    "status": "Crew Dispatched",
+    "source_photo": "06_critical_flood_jelutong.jpg",
+    "notes": "Turbid storm water pooling behind blocked arterial grate near market junction."
+  },
+  {
+    "id": "FG-2026-103",
+    "timestamp": "2026-11-18 09:10 MYT",
+    "zone": "Pulau Tikus / Gurney",
+    "severity": "Moderate",
+    "confidence": 89.2,
+    "latency_ms": 20.3,
+    "status": "Pending Dispatch",
+    "source_photo": "03_moderate_leaves_pulau_tikus.jpg",
+    "notes": "Fallen angsana leaves covering roughly 40% of roadside grate bars."
+  },
+  {
+    "id": "FG-2026-104",
+    "timestamp": "2026-11-18 09:35 MYT",
+    "zone": "Air Itam",
+    "severity": "Moderate",
+    "confidence": 87.6,
+    "latency_ms": 20.3,
+    "status": "Pending Dispatch",
+    "source_photo": "04_moderate_silt_air_itam.jpg",
+    "notes": "Market silt and twigs reducing drain throat capacity."
+  },
+  {
+    "id": "FG-2026-105",
+    "timestamp": "2026-11-18 10:05 MYT",
+    "zone": "Bayan Lepas",
+    "severity": "Clear",
+    "confidence": 95.1,
+    "latency_ms": 20.3,
+    "status": "Cleared",
+    "source_photo": "01_clear_gurney_drive.jpg",
+    "notes": "Routine morning check passed despite diagonal tree shadow."
+  }
+]

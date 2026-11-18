@@ -1,0 +1,6 @@
+numpy>=1.26.0
+opencv-python>=4.10.0
+pillow>=10.0.0
+# Optional for full Streamlit + TensorFlow MobileNetV2 runtime:
+streamlit>=1.38.0
+tensorflow>=2.16.0
